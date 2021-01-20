@@ -16,13 +16,16 @@ def get_days_left(country):
     df= df.fillna(method = "ffill")
     
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
-    population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
+    try:
+        population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
+        
+        not_vaccinated = population - df["total_vaccinations"].iloc[-1]
+        seven_day_average = sum(df["new_vaccinations"].iloc[-7:]) / 7
+        
+        days_left = int((not_vaccinated / 2) / seven_day_average)
+        return days_left
     
-    not_vaccinated = population - df["total_vaccinations"].iloc[-1]
-    seven_day_average = sum(df["new_vaccinations"].iloc[-7:]) / 7
-    
-    days_left = int((not_vaccinated / 2) / seven_day_average)
-    return days_left
-
-
-print(get_days_left("Hungary"))
+    except:
+        print("Country does not provide enough data.")
+        
+get_days_left("Germany")
