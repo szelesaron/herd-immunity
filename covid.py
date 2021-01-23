@@ -31,6 +31,14 @@ def get_days_left(country):
     except:
         print("Country does not provide enough data.")
         
-get_days_left("Malta")
+#get_days_left("Malta")
+
+
+#returning dataframe -saving it into csv file
+data = {'Country': ['Hungary','Austria'],
+        'Days': [get_days_left("Hungary"), get_days_left("Austria")]
+    }
+days_left_df = pd.DataFrame(data, columns= ['Country', 'Days'])
+days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
 
 

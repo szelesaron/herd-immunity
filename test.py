@@ -38,7 +38,7 @@ def get_days_left(country):
 data=[
     {
         'country':'Hungary',
-        'days': get_days_left("Hungary"),
+        'days': get_days_left("Hungary")
 
     }]
 
