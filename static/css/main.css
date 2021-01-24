@@ -1,17 +1,71 @@
-body {
-  background: Linen;
-  margin-top: 50px;
-  margin-left: 100px;
-  }
+/* global variables */ 
+:root {
+  --green: #13713E; 
+}
 
-p {
-  font-family: Georgia, serif;
-  font-size: 1.2em;
-  color: DarkSlateGray;
-  }
+/* getting rid of standard margin & padding */
+* {
+  margin: 0; 
+  padding: 0; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* css rules for the whole document */ 
+body {
+  background: white;
+}
 
 h1 {
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 2.5em;
-  color: FireBrick;
-  }
+  font-size: 64px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+a {
+  color: black;
+}
+
+/* specific css for header */
+header {
+  height: 30vh;
+  display: flex;
+}
+.heading {
+  flex: 1; 
+  padding-left: 5vw; padding-top: 5vw; 
+}
+header img {
+  height: 12vw;
+  padding-right: 4vw; padding-top: 4vw; 
+}
+
+/* specific css for middle part: the user can choose the country here */
+.time-display {
+  height: 40vh;
+  padding-left: 25vw; padding-top: 5vw;
+  vertical-align: middle;
+}
+.time-display h2 {
+  color: var(--green);
+}
+/* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
+.country-dropdown {
+  width: 100%;
+}
+
+
+/* css for the footer part */
+footer {
+  height: 30vh;
+}
+footer h3 {
+  margin: 0 5vw 5vw 5vw;
+}
