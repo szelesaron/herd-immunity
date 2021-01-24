@@ -1,8 +1,10 @@
+%%timeit
 import pandas as pd
 import numpy as np
 import os
 os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
 
+#building list of countires who are vaccinating
 def get_countries():
     df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
     countries = df[ df["total_vaccinations"] > 0]["location"].unique().tolist()
@@ -10,10 +12,9 @@ def get_countries():
    
 
     
-
+#NEEDS TO BE OPTIMIZED
 def get_days_left(country):
     #Getting the data - cleaning
-    
     df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
     
     vacc_col = [vac for vac in df.columns if "vaccin" in vac]
@@ -43,8 +44,8 @@ def get_days_left(country):
         return 0
 
 
-#returning dataframe -saving it into csv file
 
+#generating dataframe to return - getting every countries' immunity date
 def build_list():
     l = []    
     countries = get_countries()
@@ -52,13 +53,13 @@ def build_list():
         l.append(get_days_left(country))
     
     return l
-
 res = build_list()
 
+#putting it into a df
 days_left_df = pd.DataFrame()
 days_left_df = days_left_df.append(res)
 
-
+#saving it into disk
 days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
 
 
