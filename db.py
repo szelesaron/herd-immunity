@@ -1,5 +1,7 @@
 import sqlite3
 import pandas as pd
+import os
+os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
 
 #creating database
 conn = sqlite3.connect("covid.db")

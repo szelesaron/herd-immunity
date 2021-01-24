@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-
+import os
+os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
 
 def get_days_left(country):
     #Getting the data - cleaning
-    #country = "Malta"
     
     df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
     
@@ -26,19 +26,19 @@ def get_days_left(country):
         seven_day_average = sum(df["new_vaccinations"].iloc[-14:]) / 14
         
         days_left = (not_vaccinated / 2) / seven_day_average
-        return days_left
+        
+        #this return format allows to be inserted into a dataframe
+        data = {'Country': [country],
+                'Days': [days_left]}
+        return data
     
     except:
         print("Country does not provide enough data.")
-        
-#get_days_left("Malta")
 
 
 #returning dataframe -saving it into csv file
-data = {'Country': ['Hungary','Austria'],
-        'Days': [get_days_left("Hungary"), get_days_left("Austria")]
-    }
-days_left_df = pd.DataFrame(data, columns= ['Country', 'Days'])
+days_left_df = pd.DataFrame(get_days_left("Hungary"), columns= ['Country', 'Days'])
+
 days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
 
 
