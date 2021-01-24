@@ -1,0 +1,8 @@
+# ignore the following for frontend branch
+covid.db
+
+covid.py
+db.py
+test.py
+
+days_left_df.csv
