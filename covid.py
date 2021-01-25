@@ -1,4 +1,3 @@
-%%timeit
 import pandas as pd
 import numpy as np
 import os
@@ -38,9 +37,8 @@ def get_days_left(country):
         days_left = (not_vaccinated / 2) / seven_day_average
         
         #this return format allows to be inserted into a dataframe
-        data = {'Country': country,
+        return {'Country': country,
                 'Days': days_left}
-        return data
     except:
         return 0
 
@@ -56,7 +54,7 @@ def build_list():
     return l
 
 #putting it into a df
-days_left_df = pd.DataFrame(build_list())
+days_left_df = pd.DataFrame(build_list()).dropna()
 
 #saving it into disk
 days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
