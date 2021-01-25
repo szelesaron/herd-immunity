@@ -54,11 +54,9 @@ def build_list():
         l.append(get_days_left(country))
     
     return l
-res = build_list()
 
 #putting it into a df
-days_left_df = pd.DataFrame()
-days_left_df = days_left_df.append(res)
+days_left_df = pd.DataFrame(build_list())
 
 #saving it into disk
 days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
