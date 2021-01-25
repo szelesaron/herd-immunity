@@ -1,6 +1,9 @@
 /* global variables */ 
 :root {
   --green: #13713E; 
+  --fontSmall: 1.5vw; 
+  --fontMedium: 3vw; 
+  --fontLarge: 6vw; 
 }
 
 /* getting rid of standard margin & padding */
@@ -16,16 +19,16 @@ body {
 }
 
 h1 {
-  font-size: 64px;
+  font-size: var(--fontLarge);
 }
 
 h2 {
-  font-size: 32px;
+  font-size: var(--fontMedium);
   font-weight: lighter;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: var(--fontSmall);
   font-weight: lighter;
 }
 
@@ -39,7 +42,6 @@ header {
   display: flex;
 }
 .heading {
-  flex: 1; 
   padding-left: 5vw; padding-top: 5vw; 
 }
 header img {
@@ -50,22 +52,60 @@ header img {
 /* specific css for middle part: the user can choose the country here */
 .time-display {
   height: 40vh;
-  padding-left: 25vw; padding-top: 5vw;
-  vertical-align: middle;
+  padding-left: 25vw;
+}
+/* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
+#country-dropdown {
+  margin-top: 10vh;
+  width: 50%;
+  padding: 1vw; 
+  border: none; 
+  border-bottom: 3px solid black;
 }
 .time-display h2 {
   color: var(--green);
 }
-/* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
-.country-dropdown {
-  width: 100%;
-}
 
 
 /* css for the footer part */
-footer {
+.footer {
   height: 30vh;
+  display: flex;
+  align-items: flex-end;
 }
-footer h3 {
-  margin: 0 5vw 5vw 5vw;
+.footer h3 {
+  padding: 0 0 5vw 5vw; 
+}
+
+
+/* *********************** phone ********************* */
+@media screen and (max-width: 480px) {  
+  h1 {
+    font-size: 12vh;
+    line-height: 80%;
+  }
+  h2 {
+    padding-top: 3vh;
+  }
+  h3 {
+    font-size: 1.7vh; 
+  }
+
+  /* specific css for middle part: the user can choose the country here */
+  .time-display {
+    height: 40vh;
+    padding-left: 0;
+    align-items: center;
+  }
+  /* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
+  #country-dropdown {
+    margin-top: 10vh; margin-left: 5%;
+    width: 90%;
+    border: none; 
+    border-bottom: 3px solid black;
+  }
+  .time-display h1 {
+    padding-top: 3vh;
+    text-align: center;
+  }
 }
