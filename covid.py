@@ -17,6 +17,7 @@ def get_countries():
 #NEEDS TO BE OPTIMIZED
 def get_days_left(country):
     #Getting the data - cleaning
+#    country = "Hungary"
     df = pd.read_csv(url)
     
     df = df[df["location"] == country]._get_numeric_data()
