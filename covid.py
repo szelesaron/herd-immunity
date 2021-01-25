@@ -11,8 +11,6 @@ def get_countries():
     df = pd.read_csv(url)
     countries = df[ df["total_vaccinations"] > 0]["location"].unique().tolist()
     return countries
-   
-
     
 #NEEDS TO BE OPTIMIZED
 def get_days_left(country):
@@ -35,7 +33,7 @@ def get_days_left(country):
         not_vaccinated = population - df["total_vaccinations"].iloc[-1]
         seven_day_average = sum(df["daily_vaccinations"].iloc[-14:]) / 14
         
-        days_left = (not_vaccinated / 2) / seven_day_average
+        days_left = (not_vaccinated *0.6) / seven_day_average
         
         #this return format allows to be inserted into a dataframe
         return {'Country': country,
