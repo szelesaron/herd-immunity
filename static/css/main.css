@@ -82,13 +82,21 @@ header img {
 @media screen and (max-width: 480px) {  
   h1 {
     font-size: 12vh;
-    line-height: 80%;
+    line-height: 90%;
+    word-wrap: break-word;
   }
   h2 {
     padding-top: 3vh;
   }
   h3 {
     font-size: 1.7vh; 
+  }
+
+  header img {
+    z-index: 3290; /* z-index only works on positioned elements */  
+    height: 17vw;
+    position: absolute;
+    left: 70%;
   }
 
   /* specific css for middle part: the user can choose the country here */
