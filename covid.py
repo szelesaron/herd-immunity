@@ -1,4 +1,6 @@
+%%timeit
 import pandas as pd
+import sqlite3
 import numpy as np
 import os
 os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
@@ -55,6 +57,34 @@ def build_list():
 #putting it into a df
 days_left_df = pd.DataFrame(build_list()).dropna()
 days_left_df["Days"] = days_left_df["Days"].astype(int)
+
+
+#Database things
+def insert_database(df):
+    #creating database
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+    
+    #creating table
+    c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text, Days number)')
+    conn.commit()
+    
+    
+    #sending df to db
+    df.to_sql('ImmunityDate', conn, if_exists='replace', index = False)
+
+#this can be used to check the content of the database
+def check_database():
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+    c.execute('''SELECT * FROM ImmunityDate''')
+    
+    #putting it into a df - just to check
+    df_res = pd.DataFrame(c.fetchall(), columns=['Country','Days'])
+    return df_res
+
+
+insert_database(days_left_df)
 
 #saving it into disk
 days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
