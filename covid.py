@@ -46,7 +46,6 @@ def get_days_left(country):
 #generating dataframe to return - getting every countries' immunity date
 def build_list():
     l = []    
-    
     countries = get_countries()
     for country in countries:
         l.append(get_days_left(country))
