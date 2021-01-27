@@ -2,6 +2,7 @@ import pandas as pd
 import sqlite3
 import numpy as np
 import os
+
 os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
 
 url="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv"
@@ -53,9 +54,7 @@ def build_list():
     
     return l
 
-#putting it into a df
-days_left_df = pd.DataFrame(build_list()).dropna()
-days_left_df["Days"] = days_left_df["Days"].astype(int)
+
 
 
 #Database things
@@ -71,21 +70,16 @@ def insert_database(df):
     #sending df to db
     df.to_sql('ImmunityDate', conn, if_exists='replace', index = False)
 
-#this can be used to check the content of the database
-def check_database():
-    conn = sqlite3.connect("covid.db")
-    c = conn.cursor()
-    c.execute('''SELECT * FROM ImmunityDate''')
+
+
+if __name__ == '__main__':
+    #putting it into a df
+    days_left_df = pd.DataFrame(build_list()).dropna()
+    days_left_df["Days"] = days_left_df["Days"].astype(int)
     
-    #putting it into a df - just to check
-    df_res = pd.DataFrame(c.fetchall(), columns=['Country','Days'])
-    return df_res
-
-
-insert_database(days_left_df)
 
 #saving it into disk
-days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
+#days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
 
 
 
