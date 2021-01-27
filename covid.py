@@ -1,4 +1,3 @@
-%%timeit
 import pandas as pd
 import sqlite3
 import numpy as np
@@ -68,7 +67,6 @@ def insert_database(df):
     #creating table
     c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text, Days number)')
     conn.commit()
-    
     
     #sending df to db
     df.to_sql('ImmunityDate', conn, if_exists='replace', index = False)

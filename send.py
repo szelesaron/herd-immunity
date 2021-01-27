@@ -1,29 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, g, render_template
 import sqlite3
 import os
-import pandas as pd
 os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
 
-#this can be used to check the content of the database
-def import_database():
-    conn = sqlite3.connect("covid.db")
-    c = conn.cursor()
-    c.execute('''SELECT * FROM ImmunityDate''')
-    
-    #putting it into a df - just to check
-    df_res = pd.DataFrame(c.fetchall(), columns=['Country','Days'])
-    return df_res
+#connecting to db
+def connect_db():
+    return sqlite3.connect('covid.db')
 
-
-data = import_database()
 
 app = Flask(__name__)
+
+#getting the data from the db
 @app.route('/')
-
-
-def index():
+def get_data(name=None):
+    g.db = connect_db()
+    cur = g.db.execute('SELECT * FROM ImmunityDate')
+    data = []
+    for row in cur.fetchall():
+        data.append(row)
+    g.db.close()
     return render_template('index.html', data=data)
 
 
+#running
+def main():
+    app.run(debug=False)
+
 if __name__ == '__main__':
-    app.run()
+    main()

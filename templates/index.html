@@ -6,10 +6,12 @@
     <h1>Home page</h1>
     <p>test</p>
     <ul>
-	{% for item in data %}
-    <li>{{item.country}}</li>
-    <li>{{item.days}}</li>
-	{% endfor %}
+	<ul>
+	    {%- for row in data %}
+	        <li>{{row[0]}}</li>
+	        <li>{{row[1]}}</li>
+	    {%- endfor %}
+	</ul>
 </ul>
   </body>
 </html>
