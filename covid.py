@@ -32,7 +32,7 @@ def get_days_left(country):
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
         
-        not_vaccinated = population - df["total_vaccinations"].iloc[-1]
+        not_vaccinated = population - df["people_vaccinated"].iloc[-1]
         seven_day_average = sum(df["daily_vaccinations"].iloc[-14:]) / 14
         
         days_left = (not_vaccinated *0.6) / seven_day_average
