@@ -6,7 +6,7 @@
   --fontLarge: 6vw; 
 }
 
-/* getting rid of standard margin & padding */
+/* *********************** phone screens ********************* */
 * {
   margin: 0; 
   padding: 0; 
@@ -17,21 +17,20 @@
 body {
   background: white;
 }
-
 h1 {
-  font-size: var(--fontLarge);
+  font-size: 12vh;
+  line-height: 90%;
+  word-wrap: break-word;
 }
-
 h2 {
-  font-size: var(--fontMedium);
+  padding-top: 3vh;
+  font-size: 3vh;
   font-weight: lighter;
 }
-
 h3 {
-  font-size: var(--fontSmall);
+  font-size: 1.7vh; 
   font-weight: lighter;
 }
-
 a {
   color: black;
 }
@@ -45,27 +44,34 @@ header {
   padding-left: 5vw; padding-top: 5vw; 
 }
 header img {
-  height: 12vw;
-  padding-right: 4vw; padding-top: 4vw; 
+  z-index: 2; /* z-index only works on positioned elements */  
+  height: 17vw;
+  position: absolute;
+  left: 70%;
+  top: 4vw; 
 }
 
 /* specific css for middle part: the user can choose the country here */
 .time-display {
   height: 40vh;
-  padding-left: 25vw;
+  align-items: center;
 }
 /* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
 #country-dropdown {
-  margin-top: 10vh;
-  width: 50%;
-  padding: 1vw; 
+  margin-top: 10vh; margin-left: 5%;
+  width: 90%;
   border: none; 
   border-bottom: 3px solid black;
+  font-size: 3vh;
+  font-weight: lighter;
 }
-.time-display h2 {
-  color: var(--green);
+#country-dropdown:focus {
+  outline: none; 
 }
-
+.time-display h1 {
+  padding-top: 3vh;
+  text-align: center;
+}
 
 /* css for the footer part */
 .footer {
@@ -77,43 +83,89 @@ header img {
   padding: 0 0 5vw 5vw; 
 }
 
+/* *********************** bigger screens ********************* */
+@media only screen and (min-width: 768px) {
+  /* getting rid of standard margin & padding */
+  * {
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-/* *********************** phone ********************* */
-@media screen and (max-width: 480px) {  
+  /* css rules for the whole document */ 
+  body {
+    background: white;
+  }
+
   h1 {
-    font-size: 12vh;
-    line-height: 90%;
-    word-wrap: break-word;
-  }
-  h2 {
-    padding-top: 3vh;
-  }
-  h3 {
-    font-size: 1.7vh; 
+    font-size: var(--fontLarge);
   }
 
+  h2 {
+    font-size: var(--fontMedium);
+    font-weight: lighter;
+  }
+
+  h3 {
+    font-size: var(--fontSmall);
+    font-weight: lighter;
+  }
+
+
+  /* specific css for header */
+  header {
+    height: 30vh;
+    display: flex;
+  }
+  .heading {
+    padding-left: 5vw; padding-top: 5vw; 
+  }
   header img {
-    z-index: 3290; /* z-index only works on positioned elements */  
-    height: 17vw;
-    position: absolute;
-    left: 70%;
+    z-index: 0; 
+    position: initial;
+    height: 12vw;
+    padding-left: 6vw; padding-top: 4vw; 
   }
 
   /* specific css for middle part: the user can choose the country here */
   .time-display {
     height: 40vh;
-    padding-left: 0;
-    align-items: center;
+    padding-left: 25vw;
   }
   /* style selects: https://moderncss.dev/custom-select-styles-with-pure-css/ */ 
   #country-dropdown {
-    margin-top: 10vh; margin-left: 5%;
-    width: 90%;
+    margin-top: 10vh; margin-left: 0;
+    width: 34vw;
+    padding: 0.7vw; 
     border: none; 
     border-bottom: 3px solid black;
   }
+  .time-display button {
+    padding: 0.7vw; 
+    margin-left: 5vw;
+    background-color: white; 
+    outline: none;
+    border:none; 
+    font-size: var(--fontSmall);
+    font-weight: lighter;
+    border-radius: 10px;
+    color: var(--green);
+  }
+  .time-display button:hover {
+    background-color: var(--green);
+  }
   .time-display h1 {
-    padding-top: 3vh;
-    text-align: center;
+    color: var(--green);
+    text-align: left;
+  }
+
+  /* css for the footer part */
+  .footer {
+    height: 30vh;
+    display: flex;
+    align-items: flex-end;
+  }
+  .footer h3 {
+    padding: 0 0 5vw 5vw; 
   }
 }
