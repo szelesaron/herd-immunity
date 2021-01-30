@@ -55,8 +55,6 @@ def build_list():
     return l
 
 
-
-
 #Database things
 def insert_database(df):
     #creating database
@@ -72,16 +70,13 @@ def insert_database(df):
 
 
 
+
 if __name__ == '__main__':
     #putting it into a df
     days_left_df = pd.DataFrame(build_list()).dropna()
     days_left_df["Days"] = days_left_df["Days"].astype(int)
+    insert_database(days_left_df)
     
-
-#saving it into disk
-#days_left_df.to_csv("days_left_df.csv",index = False) #index needs to be false(unnamed:0 issue)
-
-
 
 
 

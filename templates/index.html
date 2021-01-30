@@ -19,12 +19,14 @@
 	        <li>{{row[1]}}</li>
 	    {%- endfor %} -->
     <select name="countries" id="country-dropdown">
-      {% for row in data %}
-      <option value="{{row[0]}}">{{row[0]}}</option>
-      {% endfor %}
+		{% set index = 0 %}
+     	{% for row in data %}
+     	<option value="{{row[0]}}">{{row[0]}}</option>
+      	{% endfor %}
     </select>
     <button>calculate</button>
     <h1>days</h1>
+    {%print(data[index][1]) %}
   </div>
 
   <div class="footer">
