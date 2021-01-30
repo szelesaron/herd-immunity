@@ -2,6 +2,15 @@
 
 <head>
   <link rel="stylesheet" href='/static/css/main.css' />
+
+  	<script>
+	function getIndex() 
+	{
+	  return document.getElementById("country-dropdown").selectedIndex;
+	}
+
+	</script>
+
 </head>
 
 <body>
@@ -19,13 +28,14 @@
 	        <li>{{row[1]}}</li>
 	    {%- endfor %} -->
     <select name="countries" id="country-dropdown">
-		{% set index = 0 %}
      	{% for row in data %}
      	<option value="{{row[0]}}">{{row[0]}}</option>
       	{% endfor %}
     </select>
+
+
     <button>calculate</button>
-    <h1>{%print(data[index][1]) %} days</h1>
+    <h1>{%print(data[20][1]) %} days</h1>
     
   </div>
 

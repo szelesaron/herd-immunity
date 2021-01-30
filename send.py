@@ -16,11 +16,10 @@ def get_data(name=None):
     g.db = connect_db()
     cur = g.db.execute('SELECT * FROM ImmunityDate')
     data = []
-    for row in cur.fetchall():
+    for row in cur.fetchall():  
         data.append(row)
     g.db.close()
     return render_template('index.html', data=data)
-
 
 #running
 def main():

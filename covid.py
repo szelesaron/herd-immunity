@@ -73,7 +73,7 @@ def insert_database(df):
 
 if __name__ == '__main__':
     #putting it into a df
-    days_left_df = pd.DataFrame(build_list()).dropna()
+    days_left_df = pd.DataFrame(build_list()).dropna().reset_index(drop=True)
     days_left_df["Days"] = days_left_df["Days"].astype(int)
     insert_database(days_left_df)
     
