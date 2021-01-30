@@ -1,15 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href='/static/css/main.css' />
-
-  <script>
-    function getIndex() {
-      return document.getElementById("country-dropdown").selectedIndex;
-    }
-
-  </script>
-
+  <script type="text/javascript" src="{{ url_for('static', filename = 'script.js') }}"></script>
 </head>
 
 <body>
@@ -32,8 +28,7 @@
       {% endfor %}
     </select>
 
-
-    <button>calculate</button>
+    <button onclick="getIndex()">calculate</button>
     <h1>{%print(data[20][1]) %} days</h1>
 
   </div>
