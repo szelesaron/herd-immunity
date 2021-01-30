@@ -3,13 +3,12 @@
 <head>
   <link rel="stylesheet" href='/static/css/main.css' />
 
-  	<script>
-	function getIndex() 
-	{
-	  return document.getElementById("country-dropdown").selectedIndex;
-	}
+  <script>
+    function getIndex() {
+      return document.getElementById("country-dropdown").selectedIndex;
+    }
 
-	</script>
+  </script>
 
 </head>
 
@@ -28,22 +27,22 @@
 	        <li>{{row[1]}}</li>
 	    {%- endfor %} -->
     <select name="countries" id="country-dropdown">
-     	{% for row in data %}
-     	<option value="{{row[0]}}">{{row[0]}}</option>
-      	{% endfor %}
+      {% for row in data %}
+      <option value="{{row[0]}}">{{row[0]}}</option>
+      {% endfor %}
     </select>
 
 
     <button>calculate</button>
     <h1>{%print(data[20][1]) %} days</h1>
-    
+
   </div>
 
   <div class="footer">
-    <!-- TODO: open in new window  -->
-    <h3>herd-immunity gets data from <a href="https://github.com/owid/covid-19-data/tree/master/public/data">here</a>
+    <h3>herd-immunity gets data from <a href="https://github.com/owid/covid-19-data/tree/master/public/data"
+        target="_blank">here</a>
       and calculates 14 day average of daily vaccinations <br>
-      link to opensource code <a href="https://github.com/szelesaron/herd-immunity">here</a></h3>
+      link to opensource code <a href="https://github.com/szelesaron/herd-immunity" target="_blank">here</a></h3>
   </div>
 </body>
 
