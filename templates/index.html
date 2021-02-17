@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href='/static/css/main.css' />
+<<<<<<< HEAD
+
+=======
   <script type="text/javascript" src="{{ url_for('static', filename = 'script.js') }}"></script>
+>>>>>>> ad834f960d7f010ccf50622803f523f8d409bf78
 </head>
 
 <body>
@@ -18,10 +22,20 @@
   </header>
 
   <div class="time-display">
-    <!-- {%- for row in data %}
-	        <li>{{row[0]}}</li>
-	        <li>{{row[1]}}</li>
-	    {%- endfor %} -->
+    	<table id="table">
+    	<tr>
+            <th id="header">Country</th>
+    		<th id="header">Days</th>
+      	</tr> 
+
+    	{%- for row in data %}
+    	<tr>
+	        <td>{{row[0]}}</td>
+	        <td>{{row[1]}}</td>
+      	</tr>  
+	    {%- endfor %} 
+    	</table>
+	   <!--
     <select name="countries" id="country-dropdown">
       {% for row in data %}
       <option value="{{row[0]}}">{{row[0]}}</option>
@@ -30,6 +44,15 @@
 
     <button onclick="getIndex()">calculate</button>
     <h1>{%print(data[20][1]) %} days</h1>
+<<<<<<< HEAD
+    -->
+  </div>
+
+  <div class="footer">
+    <h3>herd-immunity gets data from <a target="blank" href="https://github.com/owid/covid-19-data/tree/master/public/data">here</a>
+      and calculates 14 day average of daily vaccinations <br>
+      link to opensource code <a target="blank" href="https://github.com/szelesaron/herd-immunity">here</a></h3>
+=======
 
   </div>
 
@@ -38,6 +61,7 @@
         target="_blank">here</a>
       and calculates 14 day average of daily vaccinations <br>
       link to opensource code <a href="https://github.com/szelesaron/herd-immunity" target="_blank">here</a></h3>
+>>>>>>> ad834f960d7f010ccf50622803f523f8d409bf78
   </div>
 </body>
 
