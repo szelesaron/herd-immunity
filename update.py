@@ -20,6 +20,7 @@ def get_days_left(country):
 #    country = "Hungary"
     df = pd.read_csv(url)
     
+    last_updated = df[df["location"] == country]["date"].iloc[-1]
     df = df[df["location"] == country]._get_numeric_data()
     
     mask = np.all(np.isnan(df), axis=1) | np.all(df == 0, axis=1)
@@ -39,7 +40,8 @@ def get_days_left(country):
         
         #this return format allows to be inserted into a dataframe
         return {'Country': country,
-                'Days': days_left}
+                'Days': days_left,
+                'Updated' : last_updated}
     except:
         return 0
 
@@ -54,7 +56,6 @@ def build_list():
     
     return l
 
-
 #Database things
 def insert_database(df):
     #creating database
@@ -62,7 +63,7 @@ def insert_database(df):
     c = conn.cursor()
     
     #creating table
-    c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text, Days number)')
+    c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text, Days number, Updated text)')
     conn.commit()
     
     #sending df to db

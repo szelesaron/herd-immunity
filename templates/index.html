@@ -21,14 +21,17 @@
   <div class="time-display">
     	<table id="table">
       	<tr>
-          <th id="header">Country</th>
-      		<th id="header">Days</th>
+          <th>Country</th>
+      		<th>Days</th>
+          <th>Last updated</th>
       	</tr> 
 
       	{%- for row in data %}
       	<tr>
-  	        <td>{{row[0]}}</td>
-  	        <td>{{row[1]}}</td>
+  	        <td id="country">{{row[0]}}</td>
+  	        <td id="day">{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+
       	</tr>  
   	    {%- endfor %} 
     	</table>
