@@ -1,7 +1,7 @@
 from flask import Flask, g, render_template
 import sqlite3
 import os
-os.chdir(r"C:\Users\Áron\Desktop\herd-immunity")
+os.chdir(r"C:\Users\Áron\Desktop\covid\herd-immunity")
 
 #connecting to db
 def connect_db():
