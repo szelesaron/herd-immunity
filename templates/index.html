@@ -22,15 +22,19 @@
     	<table id="table">
       	<tr>
           <th>Country</th>
-      		<th>Days</th>
+      		<th>Daily Average Vaccinations</th>
+          <th>70% of first doses received</th>
+          <th>70% of second doses received</th>
           <th>Last updated</th>
       	</tr> 
 
       	{%- for row in data %}
       	<tr>
-  	        <td id="country">{{row[0]}}</td>
-  	        <td id="day">{{row[1]}}</td>
-            <td>{{row[2]}}</td>
+  	        <td id="col">{{row[0]}}</td>
+  	        <td id="col">{{row[1]}}</td>
+            <td id="col">{{row[2]}} days</td>
+            <td id="col">{{row[3]}} days</td>
+            <td id="col">{{row[4]}}</td>
 
       	</tr>  
   	    {%- endfor %} 

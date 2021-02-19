@@ -26,7 +26,6 @@ h2 {
   padding-top: 3vh;
   font-size: 1vh;
   font-weight: lighter;
-  border-bottom: 3px solid;
 }
 h3 {
   font-size: 1.7vh; 
@@ -55,11 +54,17 @@ header img {
 /*table */
 #table
 {
-  margin-top: 5vh;
+  margin-top: 10vh;
   font-size: 4vh;
-  border-spacing: 2em 0;
+  border-spacing: 1em 2;
+  margin-left: -40vh;
 }
 
+th
+{
+  border-bottom: 3px solid;
+  width: 100vh;
+}
 /* specific css for middle part: the user can choose the country here */
 .time-display {
   text-align: left;
@@ -82,6 +87,7 @@ header img {
 .time-display h1 {
   padding-top: 3vh;
   text-align: center;
+  margin-left: 10px;
 }
 
 /* css for the footer part */

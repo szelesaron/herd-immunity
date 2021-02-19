@@ -17,7 +17,7 @@ def get_countries():
 #NEEDS TO BE OPTIMIZED
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "Hungary"
+#    country = "United Kingdom"
     df = pd.read_csv(url)
     
     last_updated = df[df["location"] == country]["date"].iloc[-1]
@@ -32,15 +32,29 @@ def get_days_left(country):
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
+        daily_average = sum(df["daily_vaccinations"].iloc[-14:]) / 14
         
-        not_vaccinated = population - df["people_fully_vaccinated"].iloc[-1]
-        seven_day_average = sum(df["daily_vaccinations"].iloc[-14:]) / 14
+        not_vaccinated_fd = population - df["people_vaccinated"].iloc[-1]
+        not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
         
-        days_left = (not_vaccinated *0.7) / seven_day_average
+        base_day_fd = df["people_vaccinated"].iloc[-8]
+        base_day_sd = df["people_fully_vaccinated"].iloc[-8]
+        
+        average_first_dose = (sum(df["people_vaccinated"].iloc[-7:] - base_day_fd) / 7)
+        average_second_dose = (sum(df["people_fully_vaccinated"].iloc[-7:] - base_day_sd) / 7)
+
+        days_left_first_dose = (not_vaccinated_fd *0.7) / average_first_dose
+        days_left_second_dose = (not_vaccinated_sd *0.7) / average_second_dose
+        
+        
+        
+        
         
         #this return format allows to be inserted into a dataframe
         return {'Country': country,
-                'Days': days_left,
+                'FDDays' : days_left_first_dose,
+                'SDDays' : days_left_second_dose,
+                'DailyAvg': daily_average,
                 'Updated' : last_updated}
     except:
         return 0
@@ -48,13 +62,23 @@ def get_days_left(country):
 
 
 #generating dataframe to return - getting every countries' immunity date
-def build_list():
+def build_list():  
     l = []    
     countries = get_countries()
     for country in countries:
         l.append(get_days_left(country))
     
     return l
+  
+
+def build_df():
+    res = build_list()
+    days_left_df = pd.DataFrame()
+    for row in res:
+        if row != 0:
+            days_left_df = days_left_df.append(row, ignore_index = True)
+    return days_left_df
+
 
 #Database things
 def insert_database(df):
@@ -63,7 +87,7 @@ def insert_database(df):
     c = conn.cursor()
     
     #creating table
-    c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text, Days number, Updated text)')
+    c.execute('CREATE TABLE IF NOT EXISTS ImmunityDate  (Country text,FDDays number, SDDays number, DailyAvg number, Updated text)')
     conn.commit()
     
     #sending df to db
@@ -71,11 +95,20 @@ def insert_database(df):
 
 
 
+a = pd.DataFrame(build_list())
 
 if __name__ == '__main__':
     #putting it into a df
-    days_left_df = pd.DataFrame(build_list()).dropna().reset_index(drop=True)
-    days_left_df["Days"] = days_left_df["Days"].astype(int)
+    days_left_df = build_df().dropna().reset_index(drop=True)
+    
+    #filtering infinte values
+    df_filter = days_left_df.isin([np.nan, np.inf, -np.inf]) 
+    days_left_df = days_left_df[~df_filter].dropna()
+    
+    
+    days_left_df["FDDays"] = days_left_df["FDDays"].astype(int)
+    days_left_df["SDDays"] = days_left_df["SDDays"].astype(int)
+    days_left_df["DailyAvg"] = days_left_df["DailyAvg"].astype(int)
     insert_database(days_left_df)
     
 

@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route('/')
 def get_data(name=None):
     g.db = connect_db()
-    cur = g.db.execute('SELECT * FROM ImmunityDate WHERE Days < 2000')
+    cur = g.db.execute('SELECT * FROM ImmunityDate')
     data = []
     for row in cur.fetchall():  
         data.append(row)
