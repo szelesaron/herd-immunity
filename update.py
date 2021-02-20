@@ -17,7 +17,7 @@ def get_countries():
 #NEEDS TO BE OPTIMIZED
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "United Kingdom"
+#    country = "Hungary"
     df = pd.read_csv(url)
     
     last_updated = df[df["location"] == country]["date"].iloc[-1]
@@ -32,7 +32,7 @@ def get_days_left(country):
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
-        daily_average = sum(df["daily_vaccinations"].iloc[-14:]) / 14
+        daily_average = sum(df["daily_vaccinations"].iloc[-7:]) / 7
         
         not_vaccinated_fd = population - df["people_vaccinated"].iloc[-1]
         not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
@@ -94,8 +94,6 @@ def insert_database(df):
     df.to_sql('ImmunityDate', conn, if_exists='replace', index = False)
 
 
-
-a = pd.DataFrame(build_list())
 
 if __name__ == '__main__':
     #putting it into a df
