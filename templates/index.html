@@ -13,53 +13,46 @@
   <header>
     <div class="heading">
       <h1>Covid-19 herd immunity</h1>
-      <h2>See how many days until your country reaches covid-19 herd immunnity</h2>
+      <h2>Find out how many days it takes until your country reaches covid-19 herd immunity</h2>
     </div>
-    <!-- <img src="../images/undraw_connected_world_wuay.svg" alt="a svg showing a map"> -->
+    <img src="../templates/images/undraw_connected_world_wuay.svg" alt="a svg showing a map">
   </header>
 
   <div class="time-display">
-    	<table id="table">
-      	<tr>
+    <table id="table">
+      <table id="table">
+        <tr>
           <th>Country</th>
-      		<th>Daily Average Vaccinations</th>
+          <th>Daily Average Vaccinations</th>
           <th>70% of first doses received</th>
           <th>70% of second doses received</th>
           <th>Last updated</th>
-      	</tr> 
+        </tr>
 
-      	{%- for row in data %}
-      	<tr>
-  	        <td id="col">{{row[0]}}</td>
-  	        <td id="col">{{row[1]}}</td>
-            <td id="col">{{row[2]}} days</td>
-            <td id="col">{{row[3]}} days</td>
-            <td id="col">{{row[4]}}</td>
+        {%- for row in data %}
+        <tr>
+          <td id="col">{{row[0]}}</td>
+          <td id="col">{{row[1]}}</td>
+          <td id="col">{{row[2]}} days</td>
+          <td id="col">{{row[3]}} days</td>
+          <td id="col">{{row[4]}}</td>
 
-      	</tr>  
-  	    {%- endfor %} 
-    	</table>
-	   <!--
-    <select name="countries" id="country-dropdown">
-      {% for row in data %}
-      <option value="{{row[0]}}">{{row[0]}}</option>
-      {% endfor %}
-    </select>
-
-    <button onclick="getIndex()">calculate</button>
-    <h1>{%print(data[20][1]) %} days</h1>
-<<<<<<< HEAD
-    -->
+        </tr>
+        {%- endfor %}
+      </table>
   </div>
-<!--
+
   <div class="footer">
-    <h3>herd-immunity gets data from <a target="blank" href="https://github.com/owid/covid-19-data/tree/master/public/data">here</a>
-      and calculates 14 day average of daily vaccinations <br>
+    <h3>
+      herd-immunity gets data from <a target="blank"
+        href="https://github.com/owid/covid-19-data/tree/master/public/data">here</a>
+      and calculates 14 day average of daily vaccinations
+    </h3>
+    <h3>
       link to opensource code <a target="blank" href="https://github.com/szelesaron/herd-immunity">here</a>
     </h3>
-
   </div>
--->
+
 </body>
 
 </html>
