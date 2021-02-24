@@ -75,6 +75,7 @@ header img {
 }
 /* for every row */
 .time-display td {
+  font-size: var(--fontSmall);
   border-bottom: 1px solid gray; 
   padding-left: 1vw; 
 }
