@@ -1,83 +1,87 @@
 /* global variables */ 
 :root {
-  --green: #13713E; 
-  --fontSmall: 1.5vw; 
-  --fontMedium: 1.8vw; 
-  --fontLarge: 6vw; 
+    --green: #13713E; 
+    --fontSmall: 3vw; 
+    --fontMedium: 4vw; 
+    --fontLarge: 8vw; 
 }
-  /* getting rid of standard margin & padding */
+  
   * {
     margin: 0; 
     padding: 0; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-
+  
   /* css rules for the whole document */ 
   body {
     background: white;
   }
-
+  /* <h1>Covid-19 herd immunity</h1> */
   h1 {
-    font-size: var(--fontLarge);
+    font-size: var(--fontLarge); 
+    line-height: 90%;
   }
-
+  /* <h2>Find out how many days it takes until your country reaches covid-19 herd immunity</h2> */
   h2 {
-    font-size: var(--fontMedium);
+    padding-top: 3vh;
+    font-size: var(--fontMedium); 
     font-weight: lighter;
   }
-
   h3 {
-    font-size: var(--fontSmall);
+    font-size: var(--fontSmall); 
     font-weight: lighter;
   }
-
-
+  /* make all the link-fonts black */
+  a {
+    color: black;
+  }
+  
   /* specific css for header */
   header {
     height: min-content; 
+    margin-bottom: 5vh; 
     display: flex;
   }
   .heading {
     padding-left: 5vw; padding-top: 5vw; 
   }
   header img {
-    position: initial;
-    height: 12vw;
-    padding-left: 6vw; padding-top: 4vw; 
-  }
-
+    /* z-index: 2; /* z-index only works on positioned elements */   
+    height: 17vw;
+    position: relative;
+    top: 4vw; 
+    right: 2vw; 
+  } 
+  
   /* div around the table */
   .time-display {
     display: flex;
-    padding-top: 5vh; padding-left: 5vh; padding-right: 5vh;
     margin-left: 10px;
   }
   /* the whole table */ 
   .table {
-    flex: 1; 
     position: relative; 
   }
   /* the table header */
   .time-display th {
     position: sticky; 
-    top: 0;  /* required for stickyness */ 
-    font-size: var(--fontMedium);
+    top: 0; 
     background-color: white;
     border-bottom: 3px solid;
     width: 100vh;
-    text-align: left;
-    padding-left: 1vw;
+    text-align: left; 
   }
-  /* for every row */ 
+  /* for every row */
   .time-display td {
-    padding-left: 1vw;
+    border-bottom: 1px solid gray; 
+    padding-left: 1vw; 
     font-size: var(--fontMedium);
   }
-
+  
   /* css for the footer part */
   .footer {
     margin: 5vw 0 5vw 5vw; 
-    height: 10vh;
+    height: min-content; 
     display: flex;
     flex-direction: column;
     justify-content: space-around;

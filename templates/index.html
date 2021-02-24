@@ -7,6 +7,8 @@
   <link rel="stylesheet" href='/static/css/main.css' />
 
   <script type="text/javascript" src="{{ url_for('static', filename = 'script.js') }}"></script>
+  <!-- for testing: 
+    <script type="text/javascript" src="../static/script.js"></script> -->
 </head>
 
 <body>
@@ -14,8 +16,11 @@
     <div class="heading">
       <h1>Covid-19 herd immunity</h1>
       <h2>Find out how many days it takes until your country reaches covid-19 herd immunity</h2>
+      <h3>Updated at x every day</h3>
     </div>
     <img src="{{ url_for('static', filename = 'images/undraw_connected_world_wuay.svg') }}" alt="a svg showing a map">
+    <!-- for testing: 
+      <img src="../static/images/undraw_connected_world_wuay.svg" alt="a svg showing a map"> -->
   </header>
 
   <div class="time-display">
@@ -29,7 +34,7 @@
           <th>Last updated</th>
         </tr>
 
-        {%- for row in data %}
+        <!-- {%- for row in data %} -->
         <tr>
           <td id="col">{{row[0]}}</td>
           <td id="col">{{row[1]}}</td>
@@ -37,7 +42,7 @@
           <td id="col">{{row[3]}} days</td>
           <td id="col">{{row[4]}}</td>
         </tr>
-        {%- endfor %}
+        <!-- {%- endfor %} -->
       </table>
   </div>
 
