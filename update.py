@@ -37,11 +37,11 @@ def get_days_left(country):
         not_vaccinated_fd = population - df["people_vaccinated"].iloc[-1]
         not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
         
-        base_day_fd = df["people_vaccinated"].iloc[-8]
-        base_day_sd = df["people_fully_vaccinated"].iloc[-8]
+        base_day_fd = df["people_vaccinated"].iloc[-15]
+        base_day_sd = df["people_fully_vaccinated"].iloc[-15]
         
-        average_first_dose = (sum(df["people_vaccinated"].iloc[-7:] - base_day_fd) / 7)
-        average_second_dose = (sum(df["people_fully_vaccinated"].iloc[-7:] - base_day_sd) / 7)
+        average_first_dose = (sum(df["people_vaccinated"].iloc[-14:] - base_day_fd) / 14)
+        average_second_dose = (sum(df["people_fully_vaccinated"].iloc[-14:] - base_day_sd) / 14)
 
         days_left_first_dose = (not_vaccinated_fd *0.7) / average_first_dose
         days_left_second_dose = (not_vaccinated_sd *0.7) / average_second_dose
