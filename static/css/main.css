@@ -71,6 +71,7 @@
   /* for every row */ 
   .time-display td {
     padding-left: 1vw;
+    border-bottom: 1px solid gray; 
     font-size: var(--fontMedium);
   }
 

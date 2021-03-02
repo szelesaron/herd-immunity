@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>Herd Immunity</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/jpg" href="../static/images/circle-cropped.png"/>
@@ -12,8 +13,8 @@
     <header>
         <div class="heading">
             <h1>Covid-19 herd immunity</h1>
-            <h2>Find out how many days it takes until your country reaches covid-19 herd immunity</h2>
-            <h3>Updated at x every day</h3>
+            <h2>Find out how many days it takes until your country reaches covid-19 herd immunity.</h2>
+            <h3>Updated at 12:00 (London Time) every day.</h3>
         </div>
         <img src="{{ url_for('static', filename = 'images/undraw_connected_world_wuay.svg') }}"
             alt="a svg showing a map">
@@ -26,7 +27,6 @@
             <table id="table">
                 <tr>
                     <th>Country</th>
-                    <th>Daily Average Vaccinations</th>
                     <th>70% of first doses received</th>
                     <th>70% of second doses received</th>
                 </tr>
@@ -34,7 +34,6 @@
                 <!-- {%- for row in data %} -->
                 <tr>
                     <td id="col">{{row[0]}}</td>
-                    <td id="col">{{row[1]}}</td>
                     <td id="col">{{row[2]}} days</td>
                     <td id="col">{{row[3]}} days</td>
                 </tr>
@@ -42,16 +41,15 @@
             </table>
     </div>
 
-    <div class="footer">
-        <h3>
-            herd-immunity gets data from <a target="blank"
-                href="https://github.com/owid/covid-19-data/tree/master/public/data">here</a>
-            and calculates 14 day average of daily vaccinations
-        </h3>
-        <h3>
-            link to opensource code <a target="blank" href="https://github.com/szelesaron/herd-immunity">here</a>
-        </h3>
-    </div>
+  <div class="footer">
+    <h3>
+      Data is provided by <a target="blank"
+        href="https://github.com/owid/covid-19-data/tree/master/public/data">OWD.</a>
+    </h3>
+    <h3>
+      Link to opensource code and documentation is <a target="blank" href="https://github.com/szelesaron/herd-immunity">here</a>
+    </h3>
+  </div>
 
 </body>
 
