@@ -34,15 +34,19 @@
 
                 <!-- {%- for row in data %} -->
                 <tr>
-                    <td id="col">{{row[0]}}</td>
-                    <td id="col">{{row[2]}} days</td>
-                    <td id="col">{{row[3]}} days</td>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[2]}} days</td>
+                    <td id="twodose_day">{{row[3]}} days</td>
                 </tr>
                 <!-- {%- endfor %} -->
             </table>
     </div>
 
   <div class="footer">
+    <h3>
+      Days are calculated using the 14 day moving average of first and second doses given. 
+      These values may be drastically different as some countries are focusing on giving first doses. 
+    </h3>
     <h3>
       Data is provided by <a target="blank"
         href="https://github.com/owid/covid-19-data/tree/master/public/data">OWD.</a>
