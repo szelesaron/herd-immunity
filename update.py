@@ -14,10 +14,27 @@ def get_countries():
     countries = df[ df["total_vaccinations"] > 0]["location"].unique().tolist()
     return countries
     
-#NEEDS TO BE OPTIMIZED
+
+def get_change_fv(df):
+    base_day = df["people_fully_vaccinated"].iloc[-15]
+    s = 0
+    for i in range(14,0,-1):
+        s += (df["people_fully_vaccinated"].iloc[-i] - base_day)
+        base_day = df["people_fully_vaccinated"].iloc[-i]
+    return s / 14
+
+def get_change_pv(df):
+    base_day = df["people_vaccinated"].iloc[-15]
+    s = 0
+    for i in range(14,0,-1):
+        s += (df["people_vaccinated"].iloc[-i] - base_day)
+        base_day = df["people_vaccinated"].iloc[-i]
+    return s / 14
+
+
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "England"
+#    country = "Hungary"
     df = pd.read_csv(url)
     
     last_updated = df[df["location"] == country]["date"].iloc[-1]
@@ -32,16 +49,17 @@ def get_days_left(country):
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
-        daily_average = sum(df["daily_vaccinations"].iloc[-7:]) / 7
+        daily_average = sum(df["daily_vaccinations_raw"].iloc[-7:]) / 7
         
         not_vaccinated_fd = population - df["people_vaccinated"].iloc[-1]
         not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
         
-        base_day_fd = df["people_vaccinated"].iloc[-15]
-        base_day_sd = df["people_fully_vaccinated"].iloc[-15]
         
-        average_first_dose = (sum(df["people_vaccinated"].iloc[-14:] - base_day_fd) / 14)
-        average_second_dose = (sum(df["people_fully_vaccinated"].iloc[-14:] - base_day_sd) / 14)
+        average_first_dose = get_change_pv(df)
+        average_second_dose =  get_change_fv(df)
+
+
+
 
         days_left_first_dose = (not_vaccinated_fd *0.7) / average_first_dose
         days_left_second_dose = (not_vaccinated_sd *0.7) / average_second_dose
