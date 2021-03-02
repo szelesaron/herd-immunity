@@ -14,6 +14,7 @@
         <div class="heading">
             <h1>Covid-19 herd immunity</h1>
             <h2>Find out how many days it takes until your country reaches covid-19 herd immunity.</h2>
+            <br>
             <h3>Updated at 12:00 (London Time) every day.</h3>
         </div>
         <img src="{{ url_for('static', filename = 'images/undraw_connected_world_wuay.svg') }}"
@@ -27,8 +28,8 @@
             <table id="table">
                 <tr>
                     <th>Country</th>
-                      <th>70% receives one dose in</th>
-                      <th>70% receives two doses in</th>
+                      <th>70% receive first dose in</th>
+                      <th id="twodose_col">70% recieve second dose in</th>
                 </tr>
 
                 <!-- {%- for row in data %} -->

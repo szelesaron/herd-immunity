@@ -17,7 +17,7 @@ def get_countries():
 #NEEDS TO BE OPTIMIZED
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "Hungary"
+#    country = "England"
     df = pd.read_csv(url)
     
     last_updated = df[df["location"] == country]["date"].iloc[-1]

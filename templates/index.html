@@ -15,6 +15,7 @@
     <div class="heading">
       <h1>Covid-19 herd immunity</h1>
       <h2>Find out how many days it takes until your country reaches covid-19 herd immunity.</h2>
+      <br>
       <h3>Updated at 12:00 (London time) daily.</h3>
     </div>
     <img src="{{ url_for('static', filename = 'images/undraw_connected_world_wuay.svg') }}" alt="a svg showing a map">
@@ -28,24 +29,28 @@
         <tr>
           <th>Country</th>
           <th>Daily Average Vaccinations</th>
-          <th>70% receives one dose in</th>
-          <th>70% receives two doses in</th>
+          <th>70% receive first dose in</th>
+          <th id="twodose_col">70% recieve second dose in</th>
           <th>Last updated</th>
         </tr>
 
         <!-- {%- for row in data %} -->
         <tr>
-          <td id="col">{{row[0]}}</td>
-          <td id="col">{{row[1]}}</td>
-          <td id="col">{{row[2]}} days</td>
-          <td id="col">{{row[3]}} days</td>
-          <td id="col">{{row[4]}}</td>
+          <td>{{row[0]}}</td>
+          <td>{{row[1]}}</td>
+          <td>{{row[2]}} days</td>
+          <td id="twodose_day">{{row[3]}} days</td>
+          <td>{{row[4]}}</td>
         </tr>
         <!-- {%- endfor %} -->
       </table>
   </div>
 
   <div class="footer">
+    <h3>
+      Days are calculated using the 14 day moving average of first and second doses given. 
+      These values may be drastically different as some countries are focusing on giving first doses. 
+    </h3>
     <h3>
       Data is provided by <a target="blank"
         href="https://github.com/owid/covid-19-data/tree/master/public/data">OWD.</a>
