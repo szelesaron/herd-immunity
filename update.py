@@ -14,22 +14,15 @@ def get_countries():
     countries = df[ df["total_vaccinations"] > 0]["location"].unique().tolist()
     return countries
     
-
-def get_change_fv(df):
-    base_day = df["people_fully_vaccinated"].iloc[-15]
+#get average first and second doses, two week average -> prevents fluctuation
+def get_change(df, col_name):
+    base_day = df[col_name].iloc[-15]
     s = 0
     for i in range(14,0,-1):
-        s += (df["people_fully_vaccinated"].iloc[-i] - base_day)
-        base_day = df["people_fully_vaccinated"].iloc[-i]
+        s += (df[col_name].iloc[-i] - base_day)
+        base_day = df[col_name].iloc[-i]
     return s / 14
 
-def get_change_pv(df):
-    base_day = df["people_vaccinated"].iloc[-15]
-    s = 0
-    for i in range(14,0,-1):
-        s += (df["people_vaccinated"].iloc[-i] - base_day)
-        base_day = df["people_vaccinated"].iloc[-i]
-    return s / 14
 
 
 def get_days_left(country):
@@ -55,17 +48,12 @@ def get_days_left(country):
         not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
         
         
-        average_first_dose = get_change_pv(df)
-        average_second_dose =  get_change_fv(df)
-
-
+        average_first_dose = get_change(df, "people_vaccinated")
+        average_second_dose =  get_change(df, "people_fully_vaccinated")
 
 
         days_left_first_dose = (not_vaccinated_fd *0.7) / average_first_dose
         days_left_second_dose = (not_vaccinated_sd *0.7) / average_second_dose
-        
-        
-        
         
         
         #this return format allows to be inserted into a dataframe
