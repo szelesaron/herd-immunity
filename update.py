@@ -49,7 +49,10 @@ def get_days_left(country):
         days_left_first_dose = ((population *0.7) - df["people_vaccinated"].iloc[-1]) / average_first_dose
         days_left_second_dose = ((population *0.7) - df["people_fully_vaccinated"].iloc[-1]) / average_second_dose
         
-        
+        if days_left_first_dose < 0:
+            days_left_first_dose = 0
+        if days_left_second_dose < 0:
+            days_left_second_dose = 0
         #this return format allows to be inserted into a dataframe
         return {'Country': country,
                 'FDDays' : days_left_first_dose,
