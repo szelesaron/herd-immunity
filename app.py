@@ -21,7 +21,7 @@ def get_data(name=None):
     agent = request.headers.get('User-Agent')
     
     g.db = connect_db()
-    cur = g.db.execute('SELECT * FROM ImmunityDate WHERE FDDays < 5000 AND SDDays < 5000 AND FDDays < SDDays')
+    cur = g.db.execute('SELECT * FROM ImmunityDate WHERE FDDays < 4500 AND SDDays < 4500')
     data = []
     for row in cur.fetchall():  
         data.append(row)
