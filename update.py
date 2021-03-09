@@ -27,31 +27,27 @@ def get_change(df, col_name):
 
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "Austria"
+#    country = "Gibraltar"
     df = pd.read_csv(url)
     
-    last_updated = df[df["location"] == country]["date"].iloc[-1]
-    df = df[df["location"] == country]._get_numeric_data()
+    last_updated = (df[df["location"] == country]["date"].iloc[-1])
+    df = df.dropna( how="any")
     
-    #dropping empty rows
-    df = df.dropna()
-    
-    
+    df = df[df["location"] == country]
+
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
         daily_average = sum(df["daily_vaccinations_raw"].iloc[-7:]) / 7
-        
-        not_vaccinated_fd = population - df["people_vaccinated"].iloc[-1]
-        not_vaccinated_sd = population - df["people_fully_vaccinated"].iloc[-1]
+    
         
         
         average_first_dose = get_change(df, "people_vaccinated")
         average_second_dose =  get_change(df, "people_fully_vaccinated")
 
 
-        days_left_first_dose = (not_vaccinated_fd *0.7) / average_first_dose
-        days_left_second_dose = (not_vaccinated_sd *0.7) / average_second_dose
+        days_left_first_dose = ((population *0.7) - df["people_vaccinated"].iloc[-1]) / average_first_dose
+        days_left_second_dose = ((population *0.7) - df["people_fully_vaccinated"].iloc[-1]) / average_second_dose
         
         
         #this return format allows to be inserted into a dataframe
@@ -71,7 +67,6 @@ def build_list():
     countries = get_countries()
     for country in countries:
         l.append(get_days_left(country))
-    
     return l
   
 
