@@ -27,7 +27,7 @@ def get_change(df, col_name):
 
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "Gibraltar"
+    country = "Austria"
     df = pd.read_csv(url)
     
     last_updated = (df[df["location"] == country]["date"].iloc[-1])
@@ -53,6 +53,7 @@ def get_days_left(country):
             days_left_first_dose = 0
         if days_left_second_dose < 0:
             days_left_second_dose = 0
+            
         #this return format allows to be inserted into a dataframe
         return {'Country': country,
                 'FDDays' : days_left_first_dose,
