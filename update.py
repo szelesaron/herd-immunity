@@ -27,17 +27,15 @@ def get_change(df, col_name):
 
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "Hungary"
+#    country = "Austria"
     df = pd.read_csv(url)
     
     last_updated = df[df["location"] == country]["date"].iloc[-1]
     df = df[df["location"] == country]._get_numeric_data()
     
-    mask = np.all(np.isnan(df), axis=1) | np.all(df == 0, axis=1)
-    df = df[~mask]
+    #dropping empty rows
+    df = df.dropna()
     
-    #dealing with missing values
-    df= df.fillna(method = "ffill")
     
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
