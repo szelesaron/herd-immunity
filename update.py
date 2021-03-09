@@ -16,25 +16,19 @@ def get_countries():
     
 #get average first and second doses, two week average -> prevents fluctuation
 def get_change(df, col_name):
-    base_day = df[col_name].iloc[-15]
-    s = 0
-    for i in range(14,0,-1):
-        s += (df[col_name].iloc[-i] - base_day)
-        base_day = df[col_name].iloc[-i]
-    return s / 14
-
+    return (df[col_name].iloc[-1] - df[col_name].iloc[-14]) / 13
 
 
 def get_days_left(country):
     #Getting the data - cleaning
-    country = "Austria"
+#    country = "United States"
     df = pd.read_csv(url)
     
     last_updated = (df[df["location"] == country]["date"].iloc[-1])
     df = df.dropna( how="any")
     
     df = df[df["location"] == country]
-
+    
     #Setting up values - getting population from vaccination / 100 and sum(vaccinated)
     try:
         population = df["total_vaccinations"].iloc[-1] / (df["total_vaccinations_per_hundred"].iloc[-1] / 100)
