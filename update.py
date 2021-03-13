@@ -16,16 +16,20 @@ def get_countries():
     
 #get average first and second doses, two week average -> prevents fluctuation
 def get_change(df, col_name):
-    return (df[col_name].iloc[-1] - df[col_name].iloc[-14]) / 13
+    return (df[col_name].iloc[-1] - df[col_name].iloc[-7]) / 6
 
 
 def get_days_left(country):
     #Getting the data - cleaning
-#    country = "United States"
+    country = "Wales"
     df = pd.read_csv(url)
     
     last_updated = (df[df["location"] == country]["date"].iloc[-1])
-    df = df.dropna( how="any")
+    
+    #no iso code for scotland, NI, wales, england
+    df = df.drop(['iso_code'], axis=1)
+    
+    df = df.dropna()
     
     df = df[df["location"] == country]
     
