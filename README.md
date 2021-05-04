@@ -1,6 +1,6 @@
 # herd-immunity
 
-[Website](www.covid-herdimmunity.com) to display expected date of herd immunity.
+[Website](https://www.covid-herdimmunity.com) to display expected date of herd immunity.
 
 
 * Data provided by OWD
